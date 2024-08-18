@@ -1,31 +1,48 @@
 # Make a spell checker!
 
-Write a program that checks spelling. The input to the program is a dictionary file containing a list of valid words and a file containing the text to be checked.
+A program that checks spelling. The input to the program is a dictionary file containing a list of valid words and a file containing the text to be checked.
 
-The program should run on the command line like so:
+To run:
 
 ```text
-<path to your program> dictionary.txt file-to-check.txt
-# output here
+python3 spell_checker.py dictionary.txt file-to-check.txt
+# Example output:
+Line 2 best suggestions: 
+        Someone tell me how you spell m̶i̶s̶p̶e̶a̶k̶s̶misspeaks.
+All misspelled words and suggestions, in order of probability:
+        Ln 2, Col 30: "mispeaks": ['misspeaks']
 ```
 
-Your program should support the following features (time permitting):
+Example run with a sample in this repo:
+```text
+python3 spell_checker.py ./dictionary.txt samples/sample1.txt
+...
+```
+
+Supports the following features:
 
 - ✅ The program outputs a list of incorrectly spelled words.
 - ✅ For each misspelled word, the program outputs a list of suggested words.
-- The program includes the line and column number of the misspelled word.
+- ✅ The program includes the line and column number of the misspelled word.
 - ✅ The program prints the misspelled word along with some surrounding context.
 - ✅ The program handles proper nouns (person or place names, for example) correctly.
 
+To test:
+```text
+./scripts/coverage.sh
+```
+~
+```text
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 6.107s
 
-## Additional information
-
-- The formatting of the output is up to you, but make it easy to understand.
-- The dictionary file (`dictionary.txt` in the example above) is always a plain text file with one word per line.
-- You can use the `dictionary.txt` file included in this directory as your dictionary.
-- The input file (`file-to-check.txt` in the example above) is a plain text file that may contain full sentences and paragraphs.
-- You should come up with your own content to run through the spell checker.
-- Use any programming language, but extra credit for using Java or Kotlin.
-- Feel free to fork the repo and put your code in there or create a new blank repo and put your code in there instead.
-- Send us a link to your code and include instructions for how to build and run it.
-- Someone from Voze will review the code with you, so be prepared to discuss your code.
+OK
+Name                   Stmts   Miss  Cover   Missing
+----------------------------------------------------
+lib/spell_checker.py      65      0   100%
+lib/text.py               25      0   100%
+lib/word.py               20      0   100%
+----------------------------------------------------
+TOTAL                    110      0   100%
+```

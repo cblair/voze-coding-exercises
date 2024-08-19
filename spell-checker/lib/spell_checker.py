@@ -9,9 +9,6 @@ logger = logging.getLogger(__name__)
 class SpellChecker:
   """Class for doing spell checking. Gives context of text with suggestions in context. 
      Also can list all other suggestions for unfound words.
-
-  Returns:
-      _type_: _description_
   """
   
   def __init__(self, dictionary_filepath):
@@ -110,7 +107,7 @@ class SpellChecker:
 
     Args:
         line_number (int): Where in the file the text is.
-        text (_type_): What to process for misspellings. Preffered to be for each line.
+        text (str): What to process for misspellings. Preffered to be for each line.
     """
     misspell_found = False
     suggestion_made = False

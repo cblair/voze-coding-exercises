@@ -23,7 +23,7 @@ class Text:
     """Using python iterator protocol, the initialization, which opens the file and prepares for reading.
 
     Returns:
-        _type_: _description_
+        Text: Return the instance of this class, for further processing.
     """
     self.file = open(self.filepath, 'r')
     return self

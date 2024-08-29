@@ -5,7 +5,7 @@ def perf_func(func):
   """Just a quick decorator to time how long a function takes to run.
 
   Args:
-      func (fuction): The function to time, using the decorator protocol.
+      func (function): The function to time, using the decorator protocol.
 
   Returns:
       function: Wrapped function with timing output, per the decorator protocol.

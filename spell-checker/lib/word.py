@@ -11,7 +11,7 @@ class Word:
     self.is_all_caps = word.isupper()
 
   def __eq__(self, other):
-    """Comparison operator override, for comapring two words in text and dictionary.
+    """Comparison operator override, for comparing two words in text and dictionary.
 
     Args:
         other (Word): Other word to compare with.
@@ -62,7 +62,7 @@ class Word:
     Args:
         old (str): Old string to replace.
         new (str): New string to replace with.
-        count (int): How many occurences to replace. When not set, will replace all.
+        count (int): How many occurrences to replace. When not set, will replace all.
 
     Returns:
         str: New str representation of the Word, with replacements.

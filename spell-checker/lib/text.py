@@ -32,7 +32,7 @@ class Text:
     """Using python iterator protocol, retrieve just the next line of the file and return it.
 
     Raises:
-      StopIteration: Raised when done with an iteration and still attempted.
+      StopIteration: Raised when done when done and an iteration still attempted.
 
     Returns:
         dict: Dictionary with the key/values:

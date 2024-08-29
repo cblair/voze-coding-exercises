@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 class SpellChecker:
   """Class for doing spell checking. Gives context of text with suggestions in context. 
-     Also can list all other suggestions for unfound words.
+     Also can list all other suggestions for missing words.
   """
   
   def __init__(self, dictionary_filepath):
@@ -34,7 +34,7 @@ class SpellChecker:
         raw_word (str): Raw string from input.
 
     Returns:
-        Word: Sanitized resulty. If empty (via str()), then ignore further processing.
+        Word: Sanitized result. If empty (via str()), then ignore further processing.
     """
     #Ignore links.        
     if raw_word.startswith("http://") or raw_word.startswith("https://"):
@@ -50,7 +50,7 @@ class SpellChecker:
     return Word(word)
 
   def __get_two_words_relation_score(self, word1, word2):
-    """Give a ratio score to how similar two words are. 0.0 is not at all realated,
+    """Give a ratio score to how similar two words are. 0.0 is not at all related,
        0.8 is considered close, and 1.0 is a perfect match.
     """
     return SequenceMatcher(None, word1, word2).ratio()
@@ -58,7 +58,7 @@ class SpellChecker:
   def __suggest_word(self, word):
     """Take a word that is most likely misspelled, and suggest words that are in the dictionary.
     
-    We accomplish making suggestions 4 diffrent ways:
+    We accomplish making suggestions 4 different ways:
     * Adds: Add a letter in every position in the word.
     * Deletes: Delete a letter in every position in the word.
     * Edits: Replace a letter in every position in the word.
@@ -75,7 +75,7 @@ class SpellChecker:
     """
     adds = [word[:i] + c + word[i:] for i in range(len(word)) for c in 'abcdefghijklmnopqrstuvwxyz']
     adds = [x for x in adds if x in self.dictionary]
-    deletes = [word.replace(word[i], "", 1) for i in range(len(word))]
+    deletes = [word[:i - 1] + word[i:] for i in range(1, len(word))]
     deletes = [x for x in deletes if x in self.dictionary]
     edits = [word[:i] + c + word[i+1:] for i in range(len(word)) for c in 'abcdefghijklmnopqrstuvwxyz']
     edits = [x for x in edits if x in self.dictionary]
@@ -95,7 +95,7 @@ class SpellChecker:
     """Checks a line for misspelled words, and suggests corrections.
     
     Simple print out any suggestions; if all words are correct, nothing is printed.
-    Misspelled words are striked through and highlighted in red, and suggestions 
+    Misspelled words are striked through or highlighted in red, and suggestions
     are highlighted in green.
     
     Example:
@@ -107,7 +107,7 @@ class SpellChecker:
 
     Args:
         line_number (int): Where in the file the text is.
-        text (str): What to process for misspellings. Preffered to be for each line.
+        text (str): What to process for misspellings. Preferred to be for each line.
     """
     misspell_found = False
     suggestion_made = False
